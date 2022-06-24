@@ -1,10 +1,11 @@
 import { postData } from "../services/request";
 
 
-const forms = () => {
+const forms = (state) => {
     const form = document.querySelectorAll('form'),
           inputs = document.querySelectorAll('input'),
-          upload = document.querySelectorAll('[name="upload"]');
+          upload = document.querySelectorAll('[name="upload"]'),
+          selects = document.querySelectorAll('[data-select]');
 
     const message = {
         loading: "Загрузка...",
@@ -23,6 +24,7 @@ const forms = () => {
     const clearInputs = () => {
         inputs.forEach(input => input.value = '');
         upload.forEach(item => item.previousElementSibling.textContent = 'Файл не выбран');
+        selects.forEach(select => select.value = '');
     };
 
     upload.forEach(item => {
@@ -61,9 +63,19 @@ const forms = () => {
                 statusMessage.appendChild(textMessage);
 
             const formData = new FormData(item);
+            console.log(formData);
+            
             let api;
             item.closest('.popup-design') || item.classList.contains('calc_form') ? api = path.designer : api = path.question;
-            console.log(api);
+            console.log(api, item);
+
+            let price = document.querySelector('.calc-price').textContent;
+            if (item.classList.contains('calc_form')) {
+                for (let k in state) {
+                    formData.append(k, state[k]);
+                }
+				formData.append('price', price);
+			}
 
             postData(api, formData)
                 .then(res => {
@@ -77,6 +89,7 @@ const forms = () => {
                 })
                 .finally(() => {
                     clearInputs();
+                    document.querySelector('.calc-price').textContent = 'Для расчета нужно выбрать размер картины и материал картины';
                     
                     setTimeout(() => {
                         statusMessage.remove();
