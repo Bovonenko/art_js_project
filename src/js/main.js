@@ -8,6 +8,7 @@ import calc from './modules/calc';
 import changeModalState from './modules/changeModalState';
 import filter from './modules/filter';
 import pictureSize from './modules/pictureSize';
+import accordion from './modules/accordion';
 
 window.addEventListener('DOMContentLoaded', () => {
     'use strict';
@@ -31,4 +32,5 @@ window.addEventListener('DOMContentLoaded', () => {
     forms(modalState);
     filter('.portfolio-menu','li','.portfolio-wrapper','.all','.portfolio-no');
     pictureSize('.sizes-block');
+    accordion('.accordion-heading', '.accordion-block');
 });
