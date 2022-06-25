@@ -32,5 +32,5 @@ window.addEventListener('DOMContentLoaded', () => {
     forms(modalState);
     filter('.portfolio-menu','li','.portfolio-wrapper','.all','.portfolio-no');
     pictureSize('.sizes-block');
-    accordion('.accordion-heading', '.accordion-block');
+    accordion('.accordion-heading');
 });
