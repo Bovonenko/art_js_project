@@ -24,23 +24,23 @@ const scrolling = (upSelector) => {
                 toBlock = document.querySelector(hash).getBoundingClientRect().top,    // как высоко/низко находиться якорь 
                 start = null;   
 
-            requestAnimationFrame(step);     debugger   // запускаем анимацию
+            requestAnimationFrame(step);        // запускаем анимацию
 
             function step(time) {       // создаем функцию для нашей анимации(аргумент тайм - это время прошедшее с момента начала загрузки страицы в миллисекундах)
-                if (start === null) { debugger   // проверяем если функция запускается первый раз
-                    start = time;   debugger    // если да, то присваеваем время прошедшее с момента начала загрузки страицы
-                }debugger
+                if (start === null) {    // проверяем если функция запускается первый раз
+                    start = time;       // если да, то присваеваем время прошедшее с момента начала загрузки страицы
+                }
 
                 let progress = time - start,  // сколко времени прошло с запуска функции, как быстро она выполняется (это для установки плавного скролла )
-                    r = (toBlock < 0 ? Math.max(heightTop - progress/speed, heightTop + toBlock) : Math.min(heightTop + progress/speed, heightTop + toBlock)); debugger
+                    r = (toBlock < 0 ? Math.max(heightTop - progress/speed, heightTop + toBlock) : Math.min(heightTop + progress/speed, heightTop + toBlock)); 
                     // в первом условии проверяем куда делается скролл вверх/вниз 
 
-                document.documentElement.scrollTo(0, r); debugger  // плавно скролим
+                document.documentElement.scrollTo(0, r);   // плавно скролим
 
-                if (r != heightTop + toBlock) { debugger    // рекурсивно вызываем анимацию пока не дойдем до нужного элемента
-                    requestAnimationFrame(step); debugger
-                } else { debugger
-                    location.hash = hash; debugger   // записываем в поисковую строку #id
+                if (r != heightTop + toBlock) {     // рекурсивно вызываем анимацию пока не дойдем до нужного элемента
+                    requestAnimationFrame(step); 
+                } else { 
+                    location.hash = hash;    // записываем в поисковую строку #id
                 }
             }
 

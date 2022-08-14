@@ -37,18 +37,18 @@ const sliders = (slides, dir, prev, next) => {
         
         prevBtn.addEventListener('click', () => {
             plusSlides(-1);
-            items[slideIndex - 1].classList.add('slideInLeft');
             items[slideIndex - 1].classList.remove('slideInRight');
+            items[slideIndex - 1].classList.add('slideInLeft');
         });
 
     }
     catch(e) {}
 
     function activateAnimation() {
-        if (dir === 'vertical') {
+        if (dir === 'horizontal') {
             paused = setInterval(function() {
                 plusSlides(1);
-                items[slideIndex - 1].classList.add('slideInDown');
+                items[slideIndex - 1].classList.add('slideInLeft');
             }, 3000);
         } else {
             paused = setInterval(function() {

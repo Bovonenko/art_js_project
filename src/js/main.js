@@ -26,7 +26,7 @@ window.addEventListener('DOMContentLoaded', () => {
     changeModalState(modalState);
     modals();
     sliders('.feedback-slider-item', '', '.main-prev-btn', '.main-next-btn');
-    sliders('.main-slider-item', 'vertical');
+    sliders('.main-slider-item', 'horizontal');
     mask('[name="phone"]');
     checkTextInputs('[name="name"]');
     checkTextInputs('[name="message"]');
